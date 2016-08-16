@@ -86,17 +86,11 @@ Trader.prototype.buy = function(amount, price, callback) {
 
   // TODO: fees are hardcoded here?
   amount *= 0.995; // remove fees
-  // prevent: Ensure that there are no more than 8 digits in total.
-  amount *= 100000000;
-  amount = Math.floor(amount);
-  amount /= 100000000;
 
-  // prevent:
-  // 'Ensure that there are no more than 2 decimal places.'
-  price *= 100;
-  price = Math.floor(price);
-  price /= 100;
-
+	amount = amount || 2;       // prevent: Ensure that there are no more than 8 digits in total.
+	
+  price = price || 5;          // prevent: Ensure that there are no more than 2 digits in total.
+ 
   this.bitstamp.buy(this.market, amount, price, undefined, set);
 }
 
